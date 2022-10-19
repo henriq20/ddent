@@ -1,6 +1,7 @@
 {
   "name": "dedentjs",
   "version": "1.0.0",
+  "description": "A package that removes indentation from string.",
   "main": "index.js",
   "license": "MIT",
   "type": "module",
