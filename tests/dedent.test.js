@@ -91,4 +91,16 @@ describe('dedent', () => {
             '    bar'
         );
     });
+
+    it('should work when passed only one argument without interpolation', () => {
+        const text = dedent(`
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Praesent dictum, mi et facilisis pharetra
+        `);
+
+        expect(text).toBe(
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n' +
+            'Praesent dictum, mi et facilisis pharetra'
+        );
+    });
 });
