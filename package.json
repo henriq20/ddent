@@ -10,6 +10,9 @@
   "types": "src/index.d.ts",
   "license": "MIT",
   "type": "module",
+  "author": {
+    "name": "Henrique Ferreira"
+  },
   "scripts": {
     "test": "node --experimental-vm-modules ./node_modules/.bin/jest",
     "format": "eslint src/** --fix"
