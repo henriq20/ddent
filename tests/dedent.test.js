@@ -57,4 +57,38 @@ describe('dedent', () => {
             'sit amet tempus dolor ante eget tortor.'
         );
     });
+
+    it('should join the lines with the specified character', () => {
+        const text = dedent('===', `
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Praesent dictum, mi et facilisis pharetra,
+            libero est lacinia risus,
+            sit amet tempus dolor ante eget tortor.
+        `);
+
+        expect(text).toBe(
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit.===' +
+            'Praesent dictum, mi et facilisis pharetra,===' +
+            'libero est lacinia risus,===' +
+            'sit amet tempus dolor ante eget tortor.'
+        );
+    });
+
+    it('should work with interpolation', () => {
+        const text = dedent`
+            Lorem ipsum dolor sit amet, ${ 1 } adipiscing elit.
+            ${ 'abc' }
+                ${ 'def' }
+            foo
+                bar
+        `;
+
+        expect(text).toBe(
+            'Lorem ipsum dolor sit amet, 1 adipiscing elit.\n' +
+            'abc\n' +
+            '    def\n' +
+            'foo\n' +
+            '    bar'
+        );
+    });
 });

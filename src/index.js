@@ -1,4 +1,10 @@
 export default function dedent(fragments, ...args) {
+    let join = '\n';
+    if (arguments.length === 2 && typeof fragments === 'string') {
+        join = fragments;
+        fragments = args.shift();
+    }
+
     fragments = typeof fragments === 'string' ? [ fragments ] : fragments;
 
     let result = fragments[0];
@@ -10,5 +16,5 @@ export default function dedent(fragments, ...args) {
     let indentation = Math.min(...result.match(/\n([ \t])+/g)?.map(m => m.length) || [ 0 ]);
     indentation -= 1; // Ignore line break length
 
-    return result.replace(new RegExp(`^[ \t]{${ indentation }}`, 'gm'), '');
+    return result.replace(new RegExp(`\n[ \t]{${ indentation }}`, 'g'), join);
 }
