@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A package that removes indentation from string.",
   "main": "src/index.js",
+  "types": "src/index.d.ts",
   "license": "MIT",
   "type": "module",
   "scripts": {
