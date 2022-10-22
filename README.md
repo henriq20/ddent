@@ -28,14 +28,14 @@ yarn add dedentjs
 ```JavaScript
 import dedent from 'dedentjs';
 
-const myBigText = dedent`
+const bigText = dedent`
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     Praesent dictum, mi et facilisis pharetra,
     libero est lacinia risus,
     sit amet tempus dolor ante eget tortor.
 `;
 
-const myBigList = dedent`
+const bigList = dedent`
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     Praesent dictum, mi et facilisis pharetra,
         - 1
@@ -46,7 +46,13 @@ const myBigList = dedent`
         sit amet tempus dolor ante eget tortor.
 `;
 
-console.log(myBigText + '\n\n' + myBigList);
+// You can also specify a join character
+const spaceSeparated = dedent(' ', `
+    foo
+    bar
+`);
+
+console.log(bigText + '\n\n' + bigList + '\n\n' + spaceSeparated);
 ```
 
 ```
@@ -63,6 +69,8 @@ Praesent dictum, mi et facilisis pharetra,
             - 4
 libero est lacinia risus,
     sit amet tempus dolor ante eget tortor.
+
+foo bar
 ```
 
 ## Contributing
