@@ -23,6 +23,9 @@
     "README.md",
     "LICENSE"
   ],
+  "bugs": {
+    "url": "https://github.com/henriq20/dedentjs/issues"
+  },
   "keywords": [
     "dedent",
     "indentation",
