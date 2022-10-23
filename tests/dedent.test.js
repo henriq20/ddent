@@ -1,12 +1,30 @@
 import dedent from '../src/index.js';
 
 describe('dedent', () => {
-    it('should remove the indentation from the text', () => {
+    it('should strip the indentation from the text', () => {
         const text = dedent`
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             Praesent dictum, mi et facilisis pharetra,
             libero est lacinia risus,
             sit amet tempus dolor ante eget tortor.
+        `;
+
+        expect(text).toBe(
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n' +
+            'Praesent dictum, mi et facilisis pharetra,\n' +
+            'libero est lacinia risus,\n' +
+            'sit amet tempus dolor ante eget tortor.'
+        );
+    });
+
+    it('should trim the text', () => {
+        const text = dedent`
+
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Praesent dictum, mi et facilisis pharetra,
+            libero est lacinia risus,
+            sit amet tempus dolor ante eget tortor.
+
         `;
 
         expect(text).toBe(
@@ -24,16 +42,9 @@ describe('dedent', () => {
         `;
 
         expect(text).toBe(
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n' +
-            '\n' +
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n\n' +
             'Praesent dictum, mi et facilisis pharetra'
         );
-    });
-
-    it('should remove tabs', () => {
-        const text = dedent`\ttest\n\ttest2`;
-
-        expect(text).toBe('test\ntest2');
     });
 
     it('should keep indentation of nested lines', () => {
@@ -47,7 +58,7 @@ describe('dedent', () => {
             sit amet tempus dolor ante eget tortor.
         `;
 
-        expect(text).toEqual(
+        expect(text).toBe(
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n' +
             'Praesent dictum, mi et facilisis pharetra,\n' +
             '    test\n' +
@@ -55,6 +66,18 @@ describe('dedent', () => {
             '          test 3\n' +
             'libero est lacinia risus,\n' +
             'sit amet tempus dolor ante eget tortor.'
+        );
+    });
+
+    it('should not dedent the second line', () => {
+        const text = dedent`
+            foo
+                bar
+        `;
+
+        expect(text).toBe(
+            'foo\n' +
+            '    bar'
         );
     });
 
